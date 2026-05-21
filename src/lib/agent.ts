@@ -5,7 +5,12 @@ import { getSeenIds, saveSeenIds, addSeen } from "@/lib/seen";
 import { scoreJob } from "@/lib/scorer";
 import { sendTelegramAlert } from "@/lib/telegram";
 
-const parser = new RSSParser();
+const parser = new RSSParser({
+  headers: {
+    "User-Agent": "Mozilla/5.0 (compatible; JobAlertBot/1.0; +https://github.com/baskar-e/agent-job)",
+    "Accept": "application/rss+xml, application/xml, text/xml, */*",
+  }
+});
 
 function extractId(item: RawJob): string {
   return item.guid ?? item.link ?? item.title ?? Math.random().toString();

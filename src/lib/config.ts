@@ -10,10 +10,6 @@ export const FEEDS: FeedConfig[] = [
     url: "https://weworkremotely.com/categories/remote-front-end-programming-jobs.rss",
   },
   {
-    name: "Remotive",
-    url: "https://remotive.com/remote-jobs/feed/software-dev",
-  },
-  {
     name: "HN Who's Hiring",
     url: "https://hnrss.org/whoishiring",
   },
