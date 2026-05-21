@@ -35,7 +35,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MIN_SCORE: ${{ vars.MIN_SCORE || '7' }}
-        run: npm run agent
+        run: tsx src/agent/run.ts
 
       - name: Save seen jobs cache
         uses: actions/cache@v4
