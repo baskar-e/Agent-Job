@@ -1,0 +1,45 @@
+name: Frontend Job Alert Agent
+
+on:
+  schedule:
+    - cron: "0 * * * *" # every hour
+  workflow_dispatch: # manual trigger from GitHub UI
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Restore seen jobs cache
+        uses: actions/cache@v4
+        with:
+          path: seen_jobs.json
+          key: seen-jobs-${{ github.run_id }}
+          restore-keys: |
+            seen-jobs-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run agent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MIN_SCORE: ${{ vars.MIN_SCORE || '7' }}
+        run: npm run agent
+
+      - name: Save seen jobs cache
+        uses: actions/cache@v4
+        if: always()
+        with:
+          path: seen_jobs.json
+          key: seen-jobs-${{ github.run_id }}
