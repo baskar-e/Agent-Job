@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "agent": "tsx --env-file=.env src/agent/run.ts"
+    "agent": "node --env-file=.env ./node_modules/.bin/tsx src/agent/run.ts"
   },
   "dependencies": {
     "groq-sdk": "^1.2.0",
