@@ -41,7 +41,7 @@ export async function sendTelegramAlert(job: ScoredJob): Promise<void> {
 
   const data = (await res.json()) as { ok: boolean; description?: string };
   if (!data.ok) {
-    throw new Error(`Telegram error: ${data.description}`);
+    throw new Error(`Telegram error: ${data.description}`); 
   }
 }
 

@@ -10,10 +10,22 @@ export const FEEDS: FeedConfig[] = [
     url: "https://weworkremotely.com/categories/remote-front-end-programming-jobs.rss",
   },
   {
+    name: "Jobicy",
+    url: "https://jobicy.com/?feed=job_feed&job_categories=dev-engineering&job_types=full-time",
+  },
+  {
     name: "HN Who's Hiring",
     url: "https://hnrss.org/whoishiring",
   },
 ];
+ 
+// JSearch queries — each runs as a separate API call
+export const JSEARCH_QUERIES = [
+  "frontend developer react",
+  "react developer india remote",
+  "frontend engineer typescript india",
+];
+ 
 
 export const YOUR_PROFILE = `
   - 3 years of frontend development experience
